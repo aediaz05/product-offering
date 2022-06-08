@@ -40,10 +40,10 @@ class ProductOfferingControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @DisplayName("Should calculate the correct sum")
+    @DisplayName("Retrieve the product price")
     @ParameterizedTest(name = "{index} => a={0}, b={1}, sum={2}")
     @MethodSource("argumentProvider")
-    void testOne(String index, ProductOfferingCriteria criteria, ProductOffering expected) throws Exception {
+    void testRequired(String index, ProductOfferingCriteria criteria, ProductOffering expected) throws Exception {
 
         String url = UriComponentsBuilder.fromHttpUrl("http://localhost:" + port + "/api/product-offering")
                 .queryParam("applicationDate", criteria.getApplicationDate())
