@@ -3,7 +3,6 @@ package ar.com.mycompany.product.offering.infra.inbound.rest;
 import ar.com.mycompany.product.offering.dto.ProductOffering;
 import ar.com.mycompany.product.offering.dto.ProductOfferingCriteria;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDate;
@@ -21,7 +19,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @author Aquiles Diaz (aquiles.diaz@smartmatic.com)
@@ -44,7 +43,7 @@ class ProductOfferingControllerTest {
     @DisplayName("Should calculate the correct sum")
     @ParameterizedTest(name = "{index} => a={0}, b={1}, sum={2}")
     @MethodSource("argumentProvider")
-    public void testOne(String index, ProductOfferingCriteria criteria, ProductOffering expected) throws Exception {
+    void testOne(String index, ProductOfferingCriteria criteria, ProductOffering expected) throws Exception {
 
         String url = UriComponentsBuilder.fromHttpUrl("http://localhost:" + port + "/api/product-offering")
                 .queryParam("applicationDate", criteria.getApplicationDate())

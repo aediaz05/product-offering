@@ -27,7 +27,7 @@ class ProductOfferingController {
     private IProductOffering iProductOffering;
 
     @GetMapping
-    ResponseEntity<ProductOffering> search(@Validated ProductOfferingCriteria productPriceCriteria) {
+    public ResponseEntity<ProductOffering> search(@Validated ProductOfferingCriteria productPriceCriteria) {
         log.info("Search products using criteria: [{}]", HtmlUtils.htmlEscape(productPriceCriteria.toString()));
         ProductOffering productOffering = iProductOffering.getOne(productPriceCriteria);
         return ResponseEntity.ok(productOffering);
